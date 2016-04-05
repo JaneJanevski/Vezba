@@ -1,0 +1,154 @@
+<html>
+
+
+<head>
+
+<meta charset = "UTF-8">
+
+<script type="text/javascript" src = "jquery-1.11.3.min.js"> </script>
+
+<script type="text/javascript" src = "jquery-1.11.3.js"> </script>
+ 
+ 
+ <script>
+  
+  
+
+$(document).ready(function () {
+$("#getdata").click(function(){
+$("#tb").show();
+
+$.ajax({
+  url: "cd_catalog.xml",
+  dataType: 'xml',
+  crossDomain: true,
+  
+ 
+ success : function(xml){
+	
+	$(xml).find('CD').each(function(){
+      var sTitle = $(this).find('TITLE').text();
+      var sPublisher = $(this).find('ARTIST').text();
+	  var sCountry = $(this).find('COUNTRY').text();
+	  var sCompany = $(this).find('COMPANY').text();
+	  var sPrice = $(this).find('PRICE').text();
+	  var sYear = $(this).find('YEAR').text();
+      //$("<tr><td></td></tr>").html(sTitle + ", " + sPublisher).appendTo("#asd");
+	  
+	  
+	  
+	  $("#tb").append("<tr class='ui-widget-content'><td class='t'>"+sTitle+"</td><td class='p'>"+sPublisher+"</td><td class='c'>"+sCountry+"</td><td class='co'>"+sCompany+"</td><td class='p1'>"+sPrice+"</td><td class='y'>"+sYear+"</td></tr>");
+    });
+
+ },
+ 
+ 
+ 
+ 
+});
+ $("#sel").append("<option value='1'>TITLE</option>");
+  $("#sel").append("<option value='2'>ARTIST</option>");
+   $("#sel").append("<option value='3'>COUNTRY</option>");
+    $("#sel").append("<option value='4'>COMPANY</option>");
+	 $("#sel").append("<option value='5'>PRICE</option>");
+	  $("#sel").append("<option value='6'>YEAR</option>");
+
+	  
+	  
+ });
+ 
+ $("#d").append("<input id='cb' type='checkbox' checked>");
+ 
+ $("#cb").on('change',function(){
+
+if($('#cb').is(":checked")==false){
+ 
+
+var element = document.getElementById("sel").value;
+if(element == 1){
+$(".t").hide();
+}
+if(element == 2){
+$(".p").hide();
+}
+if(element == 3){
+$(".c").hide();
+}
+if(element == 4){
+$(".co").hide();
+}
+if(element == 5){
+$(".p1").hide();
+}
+if(element == 6){
+$(".y").hide();
+}
+}
+ 
+ 
+ 
+ });
+ 
+ });
+
+
+ </script>
+ <style>
+ 
+ table{
+ border: 1px solid black;
+ }
+ td{
+ border: 1px solid black;
+ }
+
+ </style>
+ 
+ 
+ 
+
+</head>
+
+
+
+<body>
+
+<button id = "getdata">Get data</button> </br>
+
+
+
+<select id="sel"></select>
+
+<span id="d"></span>
+ 
+ 
+ <table id="tb" style="display : none">
+<tr>
+<td class="t">Title</td>
+
+<td class="p">Artist</td>
+
+<td class="c">Country</td>
+
+<td class="co">Company</td>
+
+<td class="p1">Price</td>
+
+<td class="y">Year</td>
+</tr>
+ </table>
+ 
+ 
+ <ul id="asd"></ul>
+
+</body>
+
+
+  
+ 
+
+
+
+
+
+</html>

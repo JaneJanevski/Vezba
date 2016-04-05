@@ -1,0 +1,119 @@
+<html>
+
+
+<head>
+
+<meta charset = "UTF-8">
+<script> </script>
+<script type="text/javascript" src = "jquery-1.11.3.min.js"> </script>
+<script type="text/javascript" src = "jquery.js"> </script>
+<script type="text/javascript" src = "jquery-1.11.3.js"> </script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+ 
+ 
+ <script>
+  
+  
+
+
+
+function getData() {
+
+        $.ajax({
+            
+             dataType: "json",  
+			 
+            url: "pod.json",          
+
+			success : function (data){
+			//var Display = data.display;
+				//var Url = data.url;
+				
+			//$("#tb").append("<tr class='ui-widget-content'>""<td>"+display+"</td>""<td>"+url+"</td>""</tr>");
+				$.each(data,function(i,item){
+			
+			$("#tb").append("<tr class='ui-widget-content'><td>"+item.display+"</td><td>"+item.url+"</td></tr>");
+				
+				
+				});
+			} 
+			});
+            }
+			$(document).ready(function(){
+			
+			$("#getdata").click(function(){
+			
+			getData();
+			
+			
+			
+			})
+			})
+			
+			
+			
+			
+			
+			
+					
+			
+			
+			
+			
+			
+			
+
+
+ </script>
+ 
+ <style>
+ table{
+ border: 1px solid black;
+
+ }
+ td{
+ border: 1px solid black;	
+ height:30px;
+ width:200px;
+ }
+ 
+ 
+ </style>
+ 
+
+</head>
+
+
+
+<body>
+
+<button id = "getdata">Get data</button> </br>
+<select>
+
+ </select>
+ 
+ <input type="checkbox"></input>
+ 
+ <table id="tb">
+<tr>
+<td>display</td>
+
+<td>url</td>
+</tr>
+ </table>
+ 
+ 
+ <ul id="asd"></ul>
+
+</body>
+
+
+  
+ 
+
+
+
+
+
+</html>
